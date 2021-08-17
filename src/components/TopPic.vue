@@ -14,11 +14,10 @@
             </div>
           </div>
           <div class="menu_tab">
-            <div class="tab_btn tab_btn_act" @click="()=>{hgf}" >
+            <div class="tab_btn" :class="{tab_btn_act:clickBtn[0]}" @click="clickTapBtn" >
               <router-link to="/info">소속 정보</router-link>
-              
             </div>
-            <div class="tab_btn " >
+            <div class="tab_btn " :class="{tab_btn_act:clickBtn[1]}" @click="clickTapBtn" >
               <router-link to="/experts">소속 전문가</router-link>
             </div>
           </div>
@@ -35,12 +34,12 @@
         info:[],
         index: 1,
         isActive:[true,false,false,false],
-        clickBtn:[false, false]
+        clickBtn:[false,false],
       }
     },
     components:{ },
     methods:{
-      clickSlide (){ //클릭 이벤트
+      clickSlide (){ //슬라이드 클릭 이벤트
         const slide = document.querySelectorAll('.slide');
         const indi = document.querySelectorAll('.indi');
         this.isActive = false
@@ -50,6 +49,18 @@
         indi[this.index % slide_leng].classList.add('indi_act')
         indi[(this.index - 1) % slide_leng].classList.remove('indi_act')
         this.index += 1;
+      },
+      clickTapBtn(e){ //소속정보, 전문가 클릭이벤트
+        const btn = e.target.parentElement
+
+        if(e.target.innerHTML === "소속 정보"){
+          this.clickBtn[0] = true
+          this.clickBtn[1] = false
+        }
+        else if(e.target.innerHTML === "소속 전문가"){
+          this.clickBtn[0] = false
+          this.clickBtn[1] = true
+        }
       }
     },
     created(){
@@ -98,6 +109,7 @@
       right: 0;
       top: 50%;
       transform: translateY(-50%);
+      cursor: pointer;
     }
     .indicator_box{
       display: flex;
