@@ -1,10 +1,11 @@
 <template>
+  <div class="w_1200">
    <div class="experts_box"> <!--  링크로 감싸고 누르면 전문가 페이지로 이동 -->
       <div class="experts" v-for="(value, index) in experts" :key="index">
         <router-link to="/expertsdetail">
-          <div class="img_box" v-bind:style="{background:`url(${value.profileImgPath}) no-repeat center / cover`}">
+          <div class="img_box" :class="{img_box_noPic:value.profileImgPath ===noPic }" v-bind:style="{background:`url(${value.profileImgPath}) no-repeat center / cover`}" >
             <div class="absent_box">
-              <div class="absent"></div>
+              <div class="absent" :class="{absent_act:value.alarmActivationState === 'Y'}"></div>
             </div>
           </div>
           <div class="experts_name">{{ `${value.name} ${value.expertTypeName}님` }}</div>
@@ -12,6 +13,9 @@
           <div class="like">♥ {{value.likeCnt}}</div>
         </router-link>    
       </div>
+      <div class="div" :></div>
+    </div>
+
   </div>
 </template>
 <script>
@@ -20,12 +24,15 @@ export default {
   name:'experts',
   data(){
     return{
-      experts:[]
+      experts:[],
+      isActive:false,
+      noPic: ""
     }
   },
   created(){
     EXPERTS.then(res => {
       this.experts = res.data.data.expertList
+      console.log(res.data.data.expertList)
       })
       .catch(err => console.log(err))
   },
@@ -55,6 +62,9 @@ export default {
     margin: 0 auto 50px;
     position: relative;
   }
+  .img_box_noPic{
+    background: url("../assets/no_pic.svg") no-repeat center / cover !important;
+  }
   .absent_box{
     width: 40px;
     height: 40px;
@@ -68,11 +78,14 @@ export default {
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    background: #dadada; /* #52a830 있으면 초록*/
+    background: #dadada;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
+  }
+  .absent_act{
+    background: #52a830;
   }
   .experts_name{
     font-size: 28px;

@@ -1,7 +1,8 @@
 <template>
   <Head />
   <TopPic />
-  <router-view ></router-view>
+  <router-view />
+
 </template>
 
 <script>
@@ -18,5 +19,6 @@ export default {
   a{width:100%; height: 100%; display: block; text-decoration: none;color: inherit;}
   .wrap{width: 100%;}
   .w_1200{width: 1200px; margin: 0 auto;}
+  .w_1350{width: 1350px; margin: 0 auto;}
 
 </style>
