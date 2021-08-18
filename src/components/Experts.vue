@@ -13,13 +13,13 @@
           <div class="like">♥ {{value.likeCnt}}</div>
         </router-link>    
       </div>
-      <div class="div" :></div>
     </div>
 
   </div>
 </template>
 <script>
-import EXPERTS from '../api/Experts'
+import {EXPERTS} from '../api/index'
+
 export default {
   name:'experts',
   data(){

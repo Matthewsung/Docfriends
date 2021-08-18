@@ -1,32 +1,32 @@
 <template>
-      <div class="w_1200">
-        <div class="top">
-          <div class="top_pic_title">{{info.name}}</div >
-          <div class="hospital_img">
-            <div class="slide" :class="{slide_act : isActive[index]}" v-for="(value, index) in info.imagePathList" :key=index>
-              <img :src=value >
-            </div>
-            <div class="slide_btn" @click="clickSlide">
-              <img src='@/assets/slide_btn.svg' alt="슬라이드 버튼">
-            </div>
-            <div class="indicator_box">
-              <div class="indi" :class="{indi_act : isActive[index]}"  v-for="(value, index) in info.imagePathList" :key=index></div>
-            </div>
-          </div>
-          <div class="menu_tab">
-            <div class="tab_btn" :class="{tab_btn_act:clickBtn[0]}" @click="clickTapBtn" >
-              <router-link to="/info">소속 정보</router-link>
-            </div>
-            <div class="tab_btn " :class="{tab_btn_act:clickBtn[1]}" @click="clickTapBtn" >
-              <router-link to="/experts">소속 전문가</router-link>
-            </div>
-          </div>
+  <div class="w_1200">
+    <div class="top">
+      <div class="top_pic_title">{{info.name}}</div >
+      <div class="hospital_img">
+        <div class="slide" :class="{slide_act : isActive[index]}" v-for="(value, index) in info.imagePathList" :key=index>
+          <img :src=value >
+        </div>
+        <div class="slide_btn" @click="clickSlide">
+          <img src='@/assets/slide_btn.svg' alt="슬라이드 버튼">
+        </div>
+        <div class="indicator_box">
+          <div class="indi" :class="{indi_act : isActive[index]}"  v-for="(value, index) in info.imagePathList" :key=index></div>
         </div>
       </div>
+      <div class="menu_tab">
+        <div class="tab_btn" :class="{tab_btn_act:clickBtn[0]}" @click="clickTapBtn" >
+          <router-link to="/info">소속 정보</router-link>
+        </div>
+        <div class="tab_btn " :class="{tab_btn_act:clickBtn[1]}" @click="clickTapBtn" >
+          <router-link to="/experts">소속 전문가</router-link>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-  import INFO from '../api/Info'
+  import {INFO} from '../api/'
   export default {
     name:'Home',
     data(){
@@ -51,7 +51,6 @@
         this.index += 1;
       },
       clickTapBtn(e){ //소속정보, 전문가 클릭이벤트
-        const btn = e.target.parentElement
 
         if(e.target.innerHTML === "소속 정보"){
           this.clickBtn[0] = true

@@ -1,4 +1,5 @@
 <template>
+<h1>{{tmp}}</h1>
   <section class="bot">
     <div class="sm_menu_box">
       <div class="sm_menu">알림 키워드</div>
@@ -17,43 +18,60 @@
     <div class="sm_menu_box">
       <div class="sm_menu">주소</div>
       <div class="sm_menu_detail address">{{`${info.addrRoad} (${info.addrEtc})`}}</div>
-      <div id="map" width="100%" height="800px"></div>
+        <Map :info="info" />
     </div>
   </section>
 </template>
 <script>
-  import INFO from '../api/Info'
-    export default {
-      name:'info',
-      data(){
-        return{
-          info:[]
-        }
-      },
-      components:{ },
-      methods:{
-        clickSlide (){ //클릭 이벤트
-          console.log(111)
-        }
-      },
-      created(){
-        INFO
-        .then(res => {
-          this.info = res.data.data
-          })
-        .catch(err => console.log(err));
-        
-      }
-      
+  import {INFO} from '../api/'
+  import Map from './Map.vue'
+  export default{
+    setup(){
+      let info = {};
+      INFO.then(res => {
+        info = res.data.data
+        console.log(res.data.data)
+      }).catch(err => console.log(err));
+      return{ info, Map,  }
     }
+  }
+  // export default {
+  //   name:'info',
+  //   data(){
+  //     return{
+  //       info:{},
+  //     }
+  //   },
+  //   components:{ Map },
+  //   methods:{
+      
+      
+  //   },
+  //   created(){
+  //     INFO
+  //     .then(res => {
+  //       this.info = res.data.data
+        
+  //       console.log(res.data.data)
+  //     })
+  //     .catch(err => console.log(err));
+      
+  //   }
+    
+  // }
 </script>
 <style >
-
+#map{
+  width: 1088px;
+  height: 666px;
+  margin-top: 42px;
+}
     .bot{
       width: 1200px;
       border: 2px solid #e6e6e6;
       padding: 130px 50px;
       margin:  0 auto;
+      box-sizing: border-box;
       text-align: left;
     }
     .sm_menu_box{

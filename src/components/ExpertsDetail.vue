@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import EXPERTSDETAIL from '../api/ExpertsDetail'
+  import { EXPERTSDETAIL } from '../api/index'
   export default {
     name:'expertsDetail',
     data(){
