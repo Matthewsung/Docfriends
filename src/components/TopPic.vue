@@ -68,9 +68,7 @@
         this.info = res.data.data
         })
       .catch(err => console.log(err));
-      
-    }
-    
+    }    
   }
 </script>
 

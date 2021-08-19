@@ -60,9 +60,6 @@
         this.alarm = res.data.data.alarmKeywordList
         }).catch(err => console.log(err))
     },
-    methods:{
-      
-    }    
   }
 </script>
 
@@ -84,9 +81,7 @@
 }
 .detail_desc{
   margin-bottom: 90px;
-  
-    font-size: 20px;
-  
+  font-size: 20px;
 }
 .desc_education{
   color: #414141;
@@ -116,7 +111,6 @@
   color: #636e82;
   font-size: 20px;
   text-align: center;
-
   margin: 0 auto;
 }
 </style>

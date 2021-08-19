@@ -34,29 +34,17 @@
       }
     },
     components:{ Map },
-    methods:{
-      
-      
-    },
     created(){
       INFO
       .then(res => {
         this.info = res.data.data
-        
-        console.log(res.data.data)
+        // console.log(res.data.data)
       })
       .catch(err => console.log(err));
-      
     }
-    
   }
 </script>
 <style >
-#map{
-  width: 1088px;
-  height: 666px;
-  margin-top: 42px;
-}
     .bot{
       width: 1200px;
       border: 2px solid #e6e6e6;
@@ -85,5 +73,10 @@
     }
     .address{
       color: #414141;
+    }
+    #map{
+      width: 1088px;
+      height: 666px;
+      margin-top: 42px;
     }
 </style>

@@ -19,12 +19,11 @@
 
 <script>
 export default {
-  
+  name:'head'
 }
 </script>
 
 <style>
-
     header{
       width: 100%;
       height: 80px;
