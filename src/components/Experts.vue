@@ -1,8 +1,8 @@
 <template>
   <div class="w_1200">
-   <div class="experts_box"> <!--  링크로 감싸고 누르면 전문가 페이지로 이동 -->
+   <div class="experts_box"> 
       <div class="experts" v-for="(value, index) in experts" :key="index">
-        <router-link to="/expertsdetail">
+        <router-link to="/expertsdetail"><!--  누르면 전문가 페이지로 이동 -->
           <div class="img_box" :class="{img_box_noPic:value.profileImgPath ===noPic }" v-bind:style="{background:`url(${value.profileImgPath}) no-repeat center / cover`}" >
             <div class="absent_box">
               <div class="absent" :class="{absent_act:value.alarmActivationState === 'Y'}"></div>
@@ -18,8 +18,7 @@
   </div>
 </template>
 <script>
-import {EXPERTS} from '../api/index'
-
+import { EXPERTS } from '../api/index'
 export default {
   name:'experts',
   data(){
@@ -32,11 +31,10 @@ export default {
   created(){
     EXPERTS.then(res => {
       this.experts = res.data.data.expertList
-      console.log(res.data.data.expertList)
+      // console.log(res.data.data.expertList)
       })
       .catch(err => console.log(err))
   },
-
 }
 </script>
 <style>
