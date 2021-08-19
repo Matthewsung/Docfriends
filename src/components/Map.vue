@@ -1,34 +1,36 @@
 <template>
-  <div id="map" ></div>
+  <div id="map"></div>
 </template>
 
 <script>
 import { Loader } from "@googlemaps/js-api-loader"
 export default {
   props:{
-    info:Object
+    info:Object,
+    lat:Number
   },
-  setup(props){
-    console.log(props.lat)
-    const myoptions={
-      center:{
-        lat:37.484288,
-        lng:127.042315
-      },
-      zoom:16,
+  data(){
+    return{
+      myoptions:{
+        center:{
+          lat:37.484288, //info.lat
+          lng:127.042315 //info.lon
+        },
+        zoom:16,
+      }
     }
+  },
+  created(){
     const loader = new Loader({
-      apiKey: "AIzaSyC214TDMzbglLsut1sjukaqafGKvxe8FWE",
+      apiKey : process.env.VUE_APP_MAP_KEY ,
     });
     loader.load().then(res => {
-      const map = new res.maps.Map(document.querySelector('#map'),myoptions)
+      const map = new res.maps.Map(document.querySelector('#map'),this.myoptions)
       new res.maps.Marker({
         position:{lat: 37.484288, lng:127.042315},
         map:map
       })
     })
-    return{
-    }
   }
 }
 </script>

@@ -18,47 +18,38 @@
     <div class="sm_menu_box">
       <div class="sm_menu">주소</div>
       <div class="sm_menu_detail address">{{`${info.addrRoad} (${info.addrEtc})`}}</div>
-        <Map :info="info" />
+        <Map :info="info" :lat="info.lat"/>
     </div>
   </section>
 </template>
 <script>
   import {INFO} from '../api/'
   import Map from './Map.vue'
-  export default{
-    setup(){
-      let info = {};
-      INFO.then(res => {
-        info = res.data.data
-        console.log(res.data.data)
-      }).catch(err => console.log(err));
-      return{ info, Map,  }
-    }
-  }
-  // export default {
-  //   name:'info',
-  //   data(){
-  //     return{
-  //       info:{},
-  //     }
-  //   },
-  //   components:{ Map },
-  //   methods:{
+  
+  export default {
+    name:'info',
+    data(){
+      return{
+        info:{},
+      }
+    },
+    components:{ Map },
+    methods:{
       
       
-  //   },
-  //   created(){
-  //     INFO
-  //     .then(res => {
-  //       this.info = res.data.data
+    },
+    created(){
+      INFO
+      .then(res => {
+        this.info = res.data.data
         
-  //       console.log(res.data.data)
-  //     })
-  //     .catch(err => console.log(err));
+        console.log(res.data.data)
+      })
+      .catch(err => console.log(err));
       
-  //   }
+    }
     
-  // }
+  }
 </script>
 <style >
 #map{
