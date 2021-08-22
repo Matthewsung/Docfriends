@@ -2,7 +2,6 @@
   <Head />
   <TopPic />
   <router-view />
-
 </template>
 
 <script>
